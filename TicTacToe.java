@@ -1,22 +1,39 @@
+import java.util.Random;
+
 public class TicTacToe {
+
+    static boolean isHumanTurn;
+    static char humanSymbol;
+    static char computerSymbol;
+
     public static void main(String[] args) {
+        tossAndAssignSymbols();
+        displayTossResult();
+    }
 
-        char[][] board = new char[3][3];
+    static void tossAndAssignSymbols() {
+        Random random = new Random();
+        int toss = random.nextInt(2);
 
-        // Initialize board with '-'
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                board[i][j] = '-';
-            }
+        if (toss == 0) {
+            isHumanTurn = true;
+            humanSymbol = 'X';
+            computerSymbol = 'O';
+        } else {
+            isHumanTurn = false;
+            humanSymbol = 'O';
+            computerSymbol = 'X';
+        }
+    }
+
+    static void displayTossResult() {
+        if (isHumanTurn) {
+            System.out.println("Human won toss and plays first");
+        } else {
+            System.out.println("Computer won toss and plays first");
         }
 
-        // Print the board
-        System.out.println("Tic-Tac-Toe Board:");
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " ");
-            }
-            System.out.println();
-        }
+        System.out.println("Human Symbol: " + humanSymbol);
+        System.out.println("Computer Symbol: " + computerSymbol);
     }
 }
